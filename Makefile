@@ -8,8 +8,12 @@ run: $(TGT)
 
 build: $(TGT)
 
+test:
+	$(MAKE) test --directory=lib
+
 $(TGT): $(SRC)
 	gcc -o $@ $^ $(FLAGS)
 
 clean:
 	rm -f bin/*.o;
+	$(MAKE) clean --directory=lib
