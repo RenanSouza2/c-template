@@ -1,9 +1,13 @@
-clean:
-	echo ""
-	echo "\t\t\t\t\t\tNO clean included"
-	echo ""
+DIRS := $(wildcard */.)
 
+.PHONY: clean
+clean:
+	for DIR in $(DIRS) ; do \
+		$(MAKE) clean --directory=$$DIR ; \
+	done
+
+.PHONY: test
 test:
-	echo ""
-	echo "\t\t\t\t\t\tNO TESTS INCLUDED"
-	echo ""
+	for DIR in $(DIRS) ; do \
+		$(MAKE) test --directory=$$DIR ; \
+	done
