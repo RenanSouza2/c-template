@@ -1,19 +1,15 @@
 SRC = src
 LIB = lib
 
-.PHONY: run
 run:
-	$(MAKE) --directory=$(SRC);
+	$(MAKE) --directory=$(SRC) 
 
-.PHONY: build
 build:
-	$(MAKE) build --directory=$(SRC);
-
-.PHONY: test
-test:
-	$(MAKE) test --directory=$(LIB)
-
-.PHONY: clean
+	$(MAKE) build --directory=$(SRC)
+	
 clean:
-	$(MAKE) clean --directory=$(LIB)
 	$(MAKE) clean --directory=$(SRC)
+	$(MAKE) clean --directory=$(LIB)
+	
+test: 
+	$(MAKE) test --directory=$(LIB)
