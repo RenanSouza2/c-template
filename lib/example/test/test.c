@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../code.c"
+#include "../debug.h"
 
 void test_example_func()
 {
