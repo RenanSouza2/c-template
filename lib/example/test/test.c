@@ -4,14 +4,14 @@
 
 void test_example_func()
 {
-    printf("\n\ttest example func");
+    printf("\n\ttest example func\t\t");
 
     hello_example();
 }
 
 void test_example()
 {
-    printf("\ntest example library");
+    printf("\ntest example library\t\t");
 
     test_example_func();
 }
