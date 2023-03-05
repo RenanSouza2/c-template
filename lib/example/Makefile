@@ -16,7 +16,7 @@ lib.o: tmp.o $(LIB_FILES)
 
 .INTERMEDIATE: tmp.o
 tmp.o: code.c
-	gcc $(FLAGS) -o $@ $^
+	gcc -o $@ $^ $(FLAGS)
 
 .PHONY: $(LIB_FILES)
 $(LIB_FILES):
@@ -30,7 +30,7 @@ debug.o: dbg.o $(DBG_FILES)
 
 .INTERMEDIATE: dbg.o
 dbg.o: code.c
-	gcc $(FLAGS) -o $@ $^ -D DEBUG
+	gcc -o $@ $^ $(FLAGS) -D DEBUG
 
 .PHONY: $(DBG_FILES)
 $(DBG_FILES):
@@ -42,7 +42,7 @@ clean:
 	rm -f *.o
 	$(MAKE) clean --directory=test
 	for DIR in $(LIB_DIR) ; do \
-		$(MAKE) clean --directory=$$DIR ; \
+		( $(MAKE) clean --directory=$$DIR ) || exit $$? ; \
 	done
 
 .PHONY: test

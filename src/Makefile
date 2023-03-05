@@ -12,7 +12,7 @@ run: main.o
 build: main.o
 
 main.o: main.c $(LIB_FILES)
-	gcc $(FLAGS) -o $@ $^
+	gcc -o $@ $^ $(FLAGS)
 
 .PHONY: $(LIB_FILES)
 $(LIB_FILES):

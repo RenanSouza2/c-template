@@ -3,4 +3,6 @@
 
 #include "header.h"
 
+void hello_debug();
+
 #endif
