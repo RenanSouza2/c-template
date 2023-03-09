@@ -6,8 +6,8 @@
 
 void hello_debug()
 {
-    printf("\nThis function helps to debug");
-    printf("\nbut is not compiled in the final built");
+    printf("\n\nThis function helps to debug");
+    printf("\nbut is not compiled in the final build");
     printf("\n");
 }
 
