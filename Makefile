@@ -12,4 +12,4 @@ clean:
 	$(MAKE) clean --directory=$(LIB)
 	
 test: 
-	$(MAKE) test --directory=$(LIB)
+	$(MAKE) test --directory=$(LIB) -s
