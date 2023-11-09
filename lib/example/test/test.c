@@ -2,6 +2,7 @@
 #include <assert.h>
 
 #include "../debug.h"
+#include "../../../utils/mem-report/bin/header.h"
 
 void test_hello()
 {
@@ -11,11 +12,29 @@ void test_hello()
     hello_example();
 }
 
+void test_malloc()
+{
+    printf("\n\t%s\t\t", __func__);
+
+    handler_p h = hello_malloc();
+
+    // Uncomment line under to see assertion fail
+    // assert(mem_empty());
+
+    printf("\nThis prints the current allocated pointers");
+    mem_report("TAG");
+
+    free(h);
+
+    assert(mem_empty());
+}
+
 void test_example()
 {
     printf("\n%s\t\t", __func__);
 
     test_hello();
+    test_malloc();
 }
 
 
