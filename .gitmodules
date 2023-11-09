@@ -1,0 +1,3 @@
+[submodule "utils/mem-report"]
+	path = utils/mem-report
+	url = https://github.com/RenanSouza2/mem-debug.git

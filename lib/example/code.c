@@ -1,8 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "debug.h"
 
 #ifdef DEBUG
+
+#include "../../utils/mem-report/bin/header.h"
 
 void hello_debug()
 {
@@ -17,3 +20,12 @@ void hello_example()
 {
     printf("\nHello example library");
 }
+
+
+handler_p hello_malloc()
+{
+    printf("\n\nHello malloc");
+
+    return malloc(4);
+}
+
