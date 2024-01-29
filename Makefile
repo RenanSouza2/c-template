@@ -7,9 +7,9 @@ run:
 build:
 	$(MAKE) build --directory=$(SRC)
 	
-clean:
+clean c:
 	$(MAKE) clean --directory=$(SRC)
 	$(MAKE) clean --directory=$(LIB)
 	
-test: 
+test t: 
 	$(MAKE) test --directory=$(LIB) -s

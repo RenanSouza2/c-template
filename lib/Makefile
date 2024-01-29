@@ -2,7 +2,7 @@ DIRS := $(wildcard */.)
 
 LIB_FILES = $(foreach DIR,$(DIRS),$(dir $(DIR))lib.o)
 DGB_FILES = $(foreach DIR,$(DIRS),$(dir $(DIR))debug.o)
-MEM_FILE = ../utils/mem-report/bin/bin.o
+MEM_FILE = ../utils/clu/bin/bin.o
 
 build: lib.o
 
@@ -30,15 +30,15 @@ $(MEM_FILE):
 
 
 
-.PHONY: clean
-clean:
+.PHONY: clean c
+clean c:
 	rm -rf *.o
 	for DIR in $(DIRS) ; do \
 		( $(MAKE) clean --directory=$$DIR ) || exit $$? ; \
 	done
 
-.PHONY: test
-test:
+.PHONY: test t
+test t:
 	for DIR in $(DIRS) ; do \
 		( $(MAKE) test --directory=$$DIR ) || exit $$? ; \
 	done

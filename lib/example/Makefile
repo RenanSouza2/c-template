@@ -13,12 +13,12 @@ debug.o: code.c
 	echo "Building $(DIR) debug"
 	gcc -o $@ $^ $(FLAGS) -D DEBUG
 
-clean:
+clean c:
 	rm -f *.o
 	$(MAKE) clean --directory=test
 
-.PHONY: test
-test:
+.PHONY: test t
+test t:
 	$(MAKE) --directory=test
 
 export

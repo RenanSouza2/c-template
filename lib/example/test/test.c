@@ -2,7 +2,7 @@
 #include <assert.h>
 
 #include "../debug.h"
-#include "../../../utils/mem-report/bin/header.h"
+#include "../../../utils/clu/bin/header.h"
 
 void test_hello()
 {
