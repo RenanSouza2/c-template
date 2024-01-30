@@ -35,6 +35,8 @@ void test_example()
 
     test_hello();
     test_malloc();
+
+    assert(mem_empty());
 }
 
 
