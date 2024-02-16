@@ -16,17 +16,13 @@ debug.o: $(DGB_FILES) $(MEM_FILE)
 
 
 
-.PHONY: $(LIB_FILES)
-$(LIB_FILES):
+.PHONY: $(LIB_FILES) $(MEM_FILE)
+$(LIB_FILES) $(MEM_FILE):
 	$(MAKE) --directory=$(dir $@)
 
 .PHONY: $(DGB_FILES)
 $(DGB_FILES):
 	$(MAKE) debug.o --directory=$(dir $@)
-
-.PHONY: $(MEM_FILE)
-$(MEM_FILE):
-	$(MAKE) --directory=$(dir $@)
 
 
 
