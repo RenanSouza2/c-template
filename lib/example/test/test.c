@@ -19,13 +19,11 @@ void test_malloc()
     handler_p h = hello_malloc();
 
     // Uncomment line under to see assertion fail
-    assert(clu_mem_empty());
+    // assert(clu_mem_empty());
 
     printf("\nThis prints the current allocated pointers");
     printf("\n");
-    printf("\n----------------------");
     clu_mem_report("TAG");
-    printf("\n----------------------");
 
     free(h);
 
