@@ -1,17 +1,15 @@
 SRC = src
 LIB = lib
-CLU = utils/clu
 
 run:
-	$(MAKE) --directory=$(SRC) 
+	$(MAKE) --directory=$(SRC) -s
 
-build:
-	$(MAKE) build --directory=$(SRC)
+build b:
+	$(MAKE) build --directory=$(SRC) -s
 	
 clean c:
-	$(MAKE) clean --directory=$(SRC)
-	$(MAKE) clean --directory=$(LIB)
-	$(MAKE) clean --directory=$(CLU)
+	$(MAKE) clean --directory=$(SRC) -s
+	$(MAKE) clean --directory=$(LIB) -s
 	
 test t: 
 	$(MAKE) test --directory=$(LIB) -s

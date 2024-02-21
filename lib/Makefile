@@ -4,14 +4,18 @@ LIB_FILES = $(foreach DIR,$(DIRS),$(dir $(DIR))lib.o)
 DGB_FILES = $(foreach DIR,$(DIRS),$(dir $(DIR))debug.o)
 CLU_FILE = ../utils/clu/bin/bin.o
 
+DIR = $(shell basename $(CURDIR))
+
 build: lib.o
 
 
 
 lib.o: $(LIB_FILES)
+	echo "linking $(DIR) object"
 	ld -r -o $@ $^
 	
 debug.o: $(DGB_FILES) $(CLU_FILE)
+	echo "linking $(DIR) debug"
 	ld -r -o $@ $^
 
 
@@ -28,13 +32,19 @@ $(DGB_FILES):
 
 .PHONY: clean c
 clean c:
+	echo "cleaning $(DIR)"
 	rm -rf *.o
 	for DIR in $(DIRS) ; do \
-		( $(MAKE) clean --directory=$$DIR ) || exit $$? ; \
+		( $(MAKE) _clean --directory=$$DIR ) || exit $$? ; \
 	done
+	$(MAKE) clean --directory=$(dir $(CLU_FILE))
 
-.PHONY: test t
+.PHONY: test
 test t:
+	$(MAKE) debug.o
+	$(MAKE) _test -s
+
+_test:
 	for DIR in $(DIRS) ; do \
-		( $(MAKE) test --directory=$$DIR ) || exit $$? ; \
+		( $(MAKE) _test --directory=$$DIR ) || exit $$? ; \
 	done
