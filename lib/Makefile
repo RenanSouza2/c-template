@@ -4,7 +4,7 @@ LIB_FILES = $(foreach DIR,$(DIRS),$(dir $(DIR))lib.o)
 DGB_FILES = $(foreach DIR,$(DIRS),$(dir $(DIR))debug.o)
 CLU_FILE = ../utils/clu/bin/bin.o
 
-DIR = $(shell basename $(CURDIR))
+DIR = lib$(word 2,$(subst lib, ,$(CURDIR)))
 
 build: lib.o
 
