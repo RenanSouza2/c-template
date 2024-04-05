@@ -1,2 +1,2 @@
 make build
-./src/main.o
+./src/main.o $@
