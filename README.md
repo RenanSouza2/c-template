@@ -8,10 +8,10 @@ Feedbacks are appreciated
 
 # commands
 
-- make / make run: run the project main file located at ./src
-- make build: bruild main executable
-- make clean / make c: clean all object files
-- make test / make t: build libs in debug mode and run all tests
+- `./run.sh <argments>`: build, if necessary, and run the project main file located at ./src
+- `make` / `make build` / `make b`: bruild main executable
+- `make clean` / `make c`: clean all object files
+- `make test` / `make t`: build libs in debug mode and run all tests
 
 # Structure
 
