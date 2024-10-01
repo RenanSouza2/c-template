@@ -9,7 +9,7 @@ Feedbacks are appreciated
 # commands
 
 - `./run.sh <argments>`: build, if necessary, and run the project main file located at ./src
-- `make` / `make build` / `make b`: bruild main executable
+- `make` / `make build` / `make b`: build main executable
 - `make clean` / `make c`: clean all object files
 - `make test` / `make t`: build libs in debug mode and run all tests
 
