@@ -4,23 +4,28 @@
 
 
 
-void test_hello()
+void test_hello(bool show)
 {
-    printf("\n\t%s", __func__);
+    char offset[] = "\t";
+    printf("\n%s%s", offset, __func__);
 
+    printf("\n%s\t%s 1", offset, __func__);
     hello_debug();
     hello_example();
 }
 
-void test_malloc()
+void test_malloc(bool show)
 {
-    printf("\n\t%s", __func__);
+    char offset[] = "\t";
+    printf("\n%s%s", offset, __func__);
 
+    printf("\n%s\t%s 1", offset, __func__);
     handler_p h = hello_malloc();
 
-    // Uncomment line under to see assertion fail
+    // Uncomment next line to see the assertion fail
     // assert(clu_mem_empty());
 
+    printf("\n%s\t%s 2", offset, __func__);
     printf("\nThis prints the current allocated pointers");
     printf("\n");
     clu_mem_report("TAG");
@@ -34,8 +39,10 @@ void test_example()
 {
     printf("\n%s", __func__);
 
-    test_hello();
-    test_malloc();
+    bool show = true;
+
+    test_hello(show);
+    test_malloc(show);
 
     assert(clu_mem_empty());
 }
