@@ -10,7 +10,7 @@
 void hello_debug()
 {
     printf("\n\nThis function helps to debug");
-    printf("\nbut is not compiled in the final build");
+    printf("\nbut it is not compiled in the final build");
     printf("\n");
 }
 
