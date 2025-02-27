@@ -14,7 +14,5 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: git submodule init
-    - run: git submodule update
     - uses: actions/checkout@v4
     - run: make build
