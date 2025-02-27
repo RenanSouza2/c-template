@@ -1,3 +1,3 @@
 make clean
-make build
-./src/main.o $@
+make debug
+./src/debug.o $@
