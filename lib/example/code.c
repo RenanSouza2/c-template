@@ -5,7 +5,7 @@
 
 #ifdef DEBUG
 
-#include "../../utils/clu/bin/header.h"
+#include "../../utils/clu/header.h"
 
 void hello_debug()
 {
