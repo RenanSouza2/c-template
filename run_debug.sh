@@ -1,3 +1,3 @@
 make clean
-make debug
+make dbg
 ./src/debug.o $@
