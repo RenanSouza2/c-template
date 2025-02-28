@@ -1,3 +1,3 @@
 make clean
 make dbg
-./src/debug.o $@
+time ./src/debug.o $@
