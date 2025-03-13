@@ -2,7 +2,7 @@
 #include "../debug.h"
 #include "../../../utils/U64.h"
 #include "../../../utils/assert.h"
-#include "../../../utils/test_revert.h"
+#include "../../../utils/expect.h"
 #include "../../../utils/clu/header.h"
 
 
@@ -46,15 +46,15 @@ void test_example_revert(bool show)
     example_revert(false);
 
     if(show) printf("\n\t\t%s 2\t\t", __func__);
-    TEST_REVERT_OPEN
+    EXPECT
     example_revert(true);
-    TEST_REVERT_CLOSE
+    TO_REVERT
 
     if(show) printf("\n\t\t%s 3\t\t", __func__);
     uint64_t *a = NULL;
-    TEST_REVERT_OPEN
+    EXPECT
     *a = 1;
-    TEST_REVERT_CLOSE
+    TO_REVERT
 
     assert(clu_mem_empty());
 } 
