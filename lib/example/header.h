@@ -1,9 +1,12 @@
 #ifndef __EXAMPLE_H__
 #define __EXAMPLE_H__
 
+#include <stdbool.h>
+
 #include "../../utils/struct.h"
 
-void hello_example();
-handler_p hello_malloc();
+void example_hello();
+handler_p example_malloc();
+void example_revert(bool revert);
 
 #endif

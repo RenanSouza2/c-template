@@ -5,7 +5,7 @@
 
 #ifdef DEBUG
 
-void hello_debug();
+void example_debug();
 
 #endif
 
