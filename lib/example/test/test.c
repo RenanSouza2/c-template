@@ -11,10 +11,10 @@ void test_example_hello(bool show)
 {
     printf("\n\t%s\t\t", __func__);
 
-    printf("\n\t\t%s 1\t\t", __func__);
+    if(show) printf("\n\t\t%s 1\t\t", __func__);
     example_debug();
 
-    printf("\n\t\t%s 2\t\t", __func__);
+    if(show) printf("\n\t\t%s 2\t\t", __func__);
     example_hello();
 }
 
@@ -22,13 +22,13 @@ void test_example_malloc(bool show)
 {
     printf("\n\t%s", __func__);
 
-    printf("\n\t\t%s 1\t\t", __func__);
+    if(show) printf("\n\t\t%s 1\t\t", __func__);
     handler_p h = example_malloc();
 
     /* Uncomment next line to see the assertion fail */
     // assert(clu_mem_empty());
 
-    printf("\n\t\t%s 2\t\t", __func__);
+    if(show) printf("\n\t\t%s 2\t\t", __func__);
     printf("\nThis prints the current allocated pointers");
     printf("\n");
     clu_mem_report("TAG");
@@ -42,12 +42,18 @@ void test_example_revert(bool show)
 {
     printf("\n\t%s", __func__);
 
-    printf("\n\t\t%s 1\t\t", __func__);
+    if(show) printf("\n\t\t%s 1\t\t", __func__);
     example_revert(false);
 
-    printf("\n\t\t%s 2\t\t", __func__);
+    if(show) printf("\n\t\t%s 2\t\t", __func__);
     TEST_REVERT_OPEN
     example_revert(true);
+    TEST_REVERT_CLOSE
+
+    if(show) printf("\n\t\t%s 3\t\t", __func__);
+    uint64_t *a = NULL;
+    TEST_REVERT_OPEN
+    *a = 1;
     TEST_REVERT_CLOSE
 
     assert(clu_mem_empty());
