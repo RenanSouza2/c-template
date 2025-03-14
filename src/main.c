@@ -4,7 +4,8 @@
 
 // #include "../utils/clu/header.h"
 
-int main(int /*argc*/, char** /*argv*/)
+// int main(int argc, char** argv)
+int main()
 {
     printf("\nTemplate repo");
     example_hello();
