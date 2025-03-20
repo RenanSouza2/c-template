@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../../utils/clu/header.h"
+#include "../../utils/U64.h"
 #include "../../utils/assert.h"
+#include "../../utils/clu/header.h"
 
 #include "debug.h"
 
@@ -30,7 +31,10 @@ handler_p example_malloc()
 {
     printf("\n\nHello malloc");
 
-    return malloc(4);
+    handler_p h = malloc(8);
+    assert(h);
+    *(uint64_t*)h = 0x1234;
+    return h;
 }
 
 void example_revert(bool revert)
