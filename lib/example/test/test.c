@@ -1,8 +1,9 @@
 
 #include "../debug.h"
+
 #include "../../../utils/U64.h"
+#include "../../../utils/test.h"
 #include "../../../utils/assert.h"
-#include "../../../utils/test_revert.h"
 #include "../../../utils/clu/header.h"
 
 
@@ -26,7 +27,7 @@ void test_example_malloc(bool show)
     handler_p h = example_malloc();
 
     /* Uncomment next line to see the assertion fail */
-    // assert(clu_mem_empty());
+    // assert(clu_mem_is_empty());
 
     if(show) printf("\n\t\t%s 2\t\t", __func__);
     printf("\n\nThis prints the current allocated pointers in short form\n");
@@ -58,13 +59,14 @@ void test_example_malloc(bool show)
     CLU_IS_SAFE(h);
     printf("\nCan be used anywhere in the code");
     printf("\nOnly adds overhead if compiled in debug mode");
+    printf("\n");
 
     free(h);
 
     /* Uncomment next line to see the assertion fail */
     // CLU_IS_SAFE(h);
 
-    assert(clu_mem_empty());
+    assert(clu_mem_is_empty());
 }
 
 void test_example_revert(bool show)
@@ -85,7 +87,7 @@ void test_example_revert(bool show)
     *a = 1;
     TEST_REVERT_CLOSE
 
-    assert(clu_mem_empty());
+    assert(clu_mem_is_empty());
 } 
 
 
@@ -100,7 +102,7 @@ void test_example()
     test_example_malloc(show);
     test_example_revert(show);
 
-    assert(clu_mem_empty());
+    assert(clu_mem_is_empty());
 }
 
 
@@ -108,7 +110,9 @@ void test_example()
 int main()
 {
     setbuf(stdout, NULL);
+    TEST_TIMEOUT_OPEN(5)
     test_example();
+    TEST_TIMEOUT_CLOSE
     printf("\n\n\tTest successful\n\n");
     return 0;
 }
