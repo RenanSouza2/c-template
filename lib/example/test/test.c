@@ -44,16 +44,16 @@ void test_example_malloc(bool show)
 
     if(show) printf("\n\t\t%s 5\t\t", __func__);
     uint64_t i_max = clu_get_max_i();
-    printf("\n\nThis is the number of different tags still allocated: %lu\n", i_max);
+    printf("\n\nThis is the number of different tags still allocated: " U64P() "\n", i_max);
 
     if(show) printf("\n\t\t%s 6\t\t", __func__);
     uint64_t j_max = clu_get_max_j(0);
-    printf("\n\nThis is the number of pointers still allocated in the first tag: %lu\n", j_max);
+    printf("\n\nThis is the number of pointers still allocated in the first tag: " U64P() "\n", j_max);
 
     if(show) printf("\n\t\t%s 7\t\t", __func__);
     handler_p h_leaked = clu_get_handler(0, 0);
     printf("\n\nThis is the handler still alocated in corrdinates (0, 0): %p", h_leaked);
-    printf("\nand the content of the pointer: %lx\n", *(uint64_t*)h_leaked);
+    printf("\nand the content of the pointer: " U64PX "\n", *(uint64_t*)h_leaked);
 
     if(show) printf("\n\t\t%s h\t\t", __func__);
     printf("\n\nThis tests if a given pointer is not dangling");
@@ -83,9 +83,10 @@ void test_example_revert(bool show)
     TEST_REVERT_CLOSE
 
     if(show) printf("\n\t\t%s 3\t\t", __func__);
-    uint64_t *a = NULL;
+    uint64_t *a = malloc(8);
+    free(a);
     TEST_REVERT_OPEN
-    *a = 1;
+    free(a);
     TEST_REVERT_CLOSE
 
     assert(clu_mem_is_empty());
