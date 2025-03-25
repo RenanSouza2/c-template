@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../../utils/U64.h"
-#include "../../utils/assert.h"
+#include "../macros/U64.h"
+#include "../macros/assert.h"
 #include "../../utils/clu/header.h"
 
 #include "debug.h"

@@ -2,7 +2,7 @@
 
 #include "../lib/example/header.h"
 
-// #include "../utils/clu/header.h"
+// #include "macros/clu/header.h"
 
 // int main(int argc, char** argv)
 int main()
