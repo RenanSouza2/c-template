@@ -57,7 +57,7 @@ void test_example_malloc(bool show)
 
     if(show) printf("\n\t\t%s h\t\t", __func__);
     printf("\n\nThis tests if a given pointer is not dangling");
-    CLU_IS_SAFE(h);
+    CLU_HANDLER_IS_SAFE(h);
     printf("\nCan be used anywhere in the code");
     printf("\nOnly adds overhead if compiled in debug mode");
     printf("\n");
@@ -65,7 +65,7 @@ void test_example_malloc(bool show)
     free(h);
 
     /* Uncomment next line to see the assertion fail */
-    // CLU_IS_SAFE(h);
+    // CLU_HANDLER_IS_SAFE(h);
 
     assert(clu_mem_is_empty());
 }
