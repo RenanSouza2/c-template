@@ -26,7 +26,8 @@
             )                                                   \
             {                                                   \
                 exit(EXIT_SUCCESS);                             \
-            }
+            }                                                   \
+            usleep(0);
 
 #define TEST_REVERT_CLOSE       \
             exit(EXIT_SUCCESS); \
