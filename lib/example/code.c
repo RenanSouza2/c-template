@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../macros/U64.h"
-#include "../macros/assert.h"
+#include "debug.h"
 #include "../../mods/clu/header.h"
 
-#include "debug.h"
+#include "../macros/U64.h"
+#include "../macros/assert.h"
 
 
 
