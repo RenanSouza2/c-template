@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "../macros/struct.h"
+#include "../../mods/macros/struct.h"
 
 void example_hello();
 handler_p example_malloc();
