@@ -3,4 +3,4 @@
 	url = https://github.com/RenanSouza2/clu.git
 [submodule "mods/macros"]
 	path = mods/macros
-	url = git@github.com:RenanSouza2/c-macros.git
+	url = https://github.com/RenanSouza2/c-macros.git
