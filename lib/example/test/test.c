@@ -37,7 +37,7 @@ void test_example_malloc(bool show)
     TEST_CASE_OPEN(1)
     {
         handler_p h = example_malloc();
-        
+
         /* Comment next line to see the clu assertion fail */
         free(h);
     }
@@ -50,7 +50,7 @@ void test_example_malloc(bool show)
 
         printf("\n\nThis prints the current allocated pointers in short form\n");
         clu_mem_report("TAG");
-    
+
         free(h);
     }
     TEST_CASE_CLOSE
@@ -58,10 +58,10 @@ void test_example_malloc(bool show)
     TEST_CASE_OPEN(3)
     {
         handler_p h = example_malloc();
-        
+
         printf("\n\nThis prints the current allocated pointers in long form\n");
         clu_mem_report_full("TAG");
-    
+
         free(h);
     }
     TEST_CASE_CLOSE
@@ -69,10 +69,10 @@ void test_example_malloc(bool show)
     TEST_CASE_OPEN(4)
     {
         handler_p h = example_malloc();
-        
+
         printf("\n\nThis prints the current allocated pointers in long form\n");
         clu_mem_report_full("TAG");
-    
+
         free(h);
     }
     TEST_CASE_CLOSE
@@ -80,10 +80,10 @@ void test_example_malloc(bool show)
     TEST_CASE_OPEN(5)
     {
         handler_p h = example_malloc();
-        
+
         uint64_t i_max = clu_get_max_i();
         printf("\n\nThis is the number of different tags still allocated: " U64P() "\n", i_max);
-    
+
         free(h);
     }
     TEST_CASE_CLOSE
@@ -91,10 +91,10 @@ void test_example_malloc(bool show)
     TEST_CASE_OPEN(6)
     {
         handler_p h = example_malloc();
-        
+
         uint64_t j_max = clu_get_max_j(0);
         printf("\n\nThis is the number of pointers still allocated in the tag index 0: " U64P() "\n", j_max);
-    
+
         free(h);
     }
     TEST_CASE_CLOSE
@@ -106,7 +106,7 @@ void test_example_malloc(bool show)
         handler_p h_leaked = clu_get_handler(0, 0);
         printf("\n\nThis is the handler still alocated in corrdinates (0, 0): %p", h_leaked);
         printf("\nand the content of the pointer: " U64PX "\n", *(uint64_t*)h);
-    
+
         free(h);
     }
     TEST_CASE_CLOSE
@@ -121,9 +121,9 @@ void test_example_malloc(bool show)
         printf("\nCan be used anywhere in the code");
         printf("\nOnly adds overhead if compiled in debug mode");
         printf("\n");
-    
+
         free(h);
-        
+
         /* Uncomment next line to see the assertion fail */
         // CLU_HANDLER_VALIDATE(h);
     }
@@ -164,7 +164,7 @@ void test_example_revert(bool show)
     TEST_CASE_CLOSE
 
     TEST_ASSERT_EMPTY
-} 
+}
 
 
 
