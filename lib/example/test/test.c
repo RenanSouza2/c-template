@@ -9,101 +9,176 @@
 
 
 
+#define TEST_ASSERT_EMPTY assert(clu_mem_is_empty());
+
 void test_example_hello(bool show)
 {
-    printf("\n\t%s\t\t", __func__);
+    TEST_FN
 
-    if(show) printf("\n\t\t%s 1\t\t", __func__);
-    example_debug();
+    TEST_CASE_OPEN(1)
+    {
+        example_debug();
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 2\t\t", __func__);
-    example_hello();
+    TEST_CASE_OPEN(2)
+    {
+        example_hello();
+    }
+    TEST_CASE_CLOSE
+
+    TEST_ASSERT_EMPTY
 }
 
 void test_example_malloc(bool show)
 {
-    printf("\n\t%s", __func__);
+    TEST_FN
 
-    if(show) printf("\n\t\t%s 1\t\t", __func__);
-    handler_p h = example_malloc();
+    TEST_CASE_OPEN(1)
+    {
+        handler_p h = example_malloc();
+        
+        /* Comment next line to see the clu assertion fail */
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    /* Uncomment next line to see the assertion fail */
-    // assert(clu_mem_is_empty());
 
-    if(show) printf("\n\t\t%s 2\t\t", __func__);
-    printf("\n\nThis prints the current allocated pointers in short form\n");
-    clu_mem_report("TAG");
+    TEST_CASE_OPEN(2)
+    {
+        handler_p h = example_malloc();
 
-    if(show) printf("\n\t\t%s 3\t\t", __func__);
-    printf("\n\nThis prints the current allocated pointers in long form\n");
-    clu_mem_report_full("TAG");
+        printf("\n\nThis prints the current allocated pointers in short form\n");
+        clu_mem_report("TAG");
+    
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 4\t\t", __func__);
-    printf("\n\nThis prints the current allocated pointers in long form\n");
-    clu_mem_report_full("TAG");
+    TEST_CASE_OPEN(3)
+    {
+        handler_p h = example_malloc();
+        
+        printf("\n\nThis prints the current allocated pointers in long form\n");
+        clu_mem_report_full("TAG");
+    
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 5\t\t", __func__);
-    uint64_t i_max = clu_get_max_i();
-    printf("\n\nThis is the number of different tags still allocated: " U64P() "\n", i_max);
+    TEST_CASE_OPEN(4)
+    {
+        handler_p h = example_malloc();
+        
+        printf("\n\nThis prints the current allocated pointers in long form\n");
+        clu_mem_report_full("TAG");
+    
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 6\t\t", __func__);
-    uint64_t j_max = clu_get_max_j(0);
-    printf("\n\nThis is the number of pointers still allocated in the first tag: " U64P() "\n", j_max);
+    TEST_CASE_OPEN(5)
+    {
+        handler_p h = example_malloc();
+        
+        uint64_t i_max = clu_get_max_i();
+        printf("\n\nThis is the number of different tags still allocated: " U64P() "\n", i_max);
+    
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 7\t\t", __func__);
-    handler_p h_leaked = clu_get_handler(0, 0);
-    printf("\n\nThis is the handler still alocated in corrdinates (0, 0): %p", h_leaked);
-    printf("\nand the content of the pointer: " U64PX "\n", *(uint64_t*)h_leaked);
+    TEST_CASE_OPEN(6)
+    {
+        handler_p h = example_malloc();
+        
+        uint64_t j_max = clu_get_max_j(0);
+        printf("\n\nThis is the number of pointers still allocated in the tag index 0: " U64P() "\n", j_max);
+    
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s h\t\t", __func__);
-    printf("\n\nThis tests if a given pointer is not dangling");
-    CLU_HANDLER_VALIDATE(h);
-    printf("\nCan be used anywhere in the code");
-    printf("\nOnly adds overhead if compiled in debug mode");
-    printf("\n");
+    TEST_CASE_OPEN(7)
+    {
+        handler_p h = example_malloc();
 
-    free(h);
+        handler_p h_leaked = clu_get_handler(0, 0);
+        printf("\n\nThis is the handler still alocated in corrdinates (0, 0): %p", h_leaked);
+        printf("\nand the content of the pointer: " U64PX "\n", *(uint64_t*)h);
+    
+        free(h);
+    }
+    TEST_CASE_CLOSE
 
-    /* Uncomment next line to see the assertion fail */
-    // CLU_HANDLER_VALIDATE(h);
+    TEST_CASE_OPEN(8)
+    {
+        handler_p h = example_malloc();
 
-    assert(clu_mem_is_empty());
+        printf("\n\nThis tests if a given pointer safe to interact");
+        printf("\nWhich means either NULL or curentrly allocated");
+        CLU_HANDLER_IS_SAFE(h);
+        printf("\nCan be used anywhere in the code");
+        printf("\nOnly adds overhead if compiled in debug mode");
+        printf("\n");
+    
+        free(h);
+        
+        /* Uncomment next line to see the assertion fail */
+        // CLU_HANDLER_VALIDATE(h);
+    }
+    TEST_CASE_CLOSE
+
+    TEST_ASSERT_EMPTY
 }
 
 void test_example_revert(bool show)
 {
-    printf("\n\t%s", __func__);
+    TEST_FN
 
-    if(show) printf("\n\t\t%s 1\t\t", __func__);
-    example_revert(false);
+    TEST_CASE_OPEN(1)
+    {
+        example_revert(false);
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 2\t\t", __func__);
-    TEST_REVERT_OPEN
-    example_revert(true);
-    TEST_REVERT_CLOSE
+    TEST_CASE_OPEN(2)
+    {
+        TEST_REVERT_OPEN
+        {
+            example_revert(true);
+        }
+        TEST_REVERT_CLOSE
+    }
+    TEST_CASE_CLOSE
 
-    if(show) printf("\n\t\t%s 3\t\t", __func__);
-    uint64_t *a = NULL;
-    TEST_REVERT_OPEN
-    *a = 1;
-    TEST_REVERT_CLOSE
+    TEST_CASE_OPEN(3)
+    {
+        uint64_t *a = NULL;
+        TEST_REVERT_OPEN
+        {
+            *a = 1;
+        }
+        TEST_REVERT_CLOSE
+    }
+    TEST_CASE_CLOSE
 
-    assert(clu_mem_is_empty());
+    TEST_ASSERT_EMPTY
 } 
 
 
 
 void test_example()
 {
-    printf("\n%s", __func__);
+    TEST_LIB
 
-    bool show = true;
+    bool show = false;
 
     test_example_hello(show);
     test_example_malloc(show);
     test_example_revert(show);
 
-    assert(clu_mem_is_empty());
+    TEST_ASSERT_EMPTY
 }
 
 
