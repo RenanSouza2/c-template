@@ -2,12 +2,15 @@
 #include <stdlib.h>
 
 #include "debug.h"
+#include "../../mods/clu/header.h"
+#include "../../mods/macros/assert.h"
+#include "../../mods/macros/U64.h"
+
+
 
 #ifdef DEBUG
 
-#include "../../utils/clu/header.h"
-
-void hello_debug()
+void example_debug()
 {
     printf("\n\nThis function helps to debug");
     printf("\nbut it is not compiled in the final build");
@@ -16,16 +19,24 @@ void hello_debug()
 
 #endif
 
-void hello_example()
+
+
+void example_hello()
 {
     printf("\nHello example library");
 }
 
-
-handler_p hello_malloc()
+handler_p example_malloc()
 {
     printf("\n\nHello malloc");
 
-    return malloc(4);
+    handler_p h = malloc(8);
+    assert(h);
+    *(uint64_t*)h = 0x1234;
+    return h;
 }
 
+void example_revert(bool revert)
+{
+    assert(!revert);
+}

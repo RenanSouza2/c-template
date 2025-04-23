@@ -2,12 +2,13 @@
 
 #include "../lib/example/header.h"
 
-// #include "../utils/clu/header.h"
+// #include "macros/clu/header.h"
 
-int main(int argc, char** argv)
+// int main(int argc, char** argv)
+int main()
 {
     printf("\nTemplate repo");
-    hello_example();
+    example_hello();
     printf("\n");
 
     printf("\n");

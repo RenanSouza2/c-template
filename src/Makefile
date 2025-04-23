@@ -1,17 +1,23 @@
-FLAGS = -Wall -Werror -Wfatal-errors
+FLAGS = -Wall -Wextra -Werror -Wfatal-errors -O3
 
 LIB = ../lib/lib.o
 DGB = ../lib/debug.o
 
+
+
 build: main.o
 
-debug: debug.o
+dbg: debug.o
+
+
 
 main.o: main.c $(LIB)
 	gcc -o $@ $^ $(FLAGS)
 
 debug.o: main.c $(DGB)
 	gcc -o $@ $^ $(FLAGS) -D DEBUG
+
+
 
 .PHONY: $(LIB)
 $(LIB):
@@ -20,6 +26,8 @@ $(LIB):
 .PHONY: $(DGB)
 $(DGB):
 	$(MAKE) debug.o --directory=$(dir $@)
+
+
 
 clean:
 	rm -rf *.o
