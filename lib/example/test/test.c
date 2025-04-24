@@ -1,19 +1,15 @@
 
 #include "../debug.h"
+#include "../../../testrc.h"
+#include "../../../mods/macros/test.h"
 
 #include "../../../mods/macros/U64.h"
-#include "../../../mods/macros/test.h"
-#include "../../../mods/macros/assert.h"
-
-#include "../../../mods/clu/header.h"
 
 
-
-#define TEST_ASSERT_EMPTY assert(clu_mem_is_empty());
 
 void test_example_hello(bool show)
 {
-    TEST_FN
+    TEST_FN_OPEN
 
     TEST_CASE_OPEN(1)
     {
@@ -27,16 +23,18 @@ void test_example_hello(bool show)
     }
     TEST_CASE_CLOSE
 
-    TEST_ASSERT_EMPTY
+    TEST_FN_CLOSE
 }
 
 void test_example_malloc(bool show)
 {
-    TEST_FN
+    TEST_FN_OPEN
 
     TEST_CASE_OPEN(1)
     {
         handler_p h = example_malloc();
+        printf("\nallocated h: %p", h);
+        printf("\nallocated content: " U64PX "", *(uint64_t*)h);
 
         /* Comment next line to see the clu assertion fail */
         free(h);
@@ -125,16 +123,16 @@ void test_example_malloc(bool show)
         free(h);
 
         /* Uncomment next line to see the assertion fail */
-        // CLU_HANDLER_VALIDATE(h);
+        // CLU_HANDLER_IS_SAFE(h);
     }
     TEST_CASE_CLOSE
 
-    TEST_ASSERT_EMPTY
+    TEST_FN_CLOSE
 }
 
 void test_example_revert(bool show)
 {
-    TEST_FN
+    TEST_FN_OPEN
 
     TEST_CASE_OPEN(1)
     {
@@ -163,7 +161,7 @@ void test_example_revert(bool show)
     }
     TEST_CASE_CLOSE
 
-    TEST_ASSERT_EMPTY
+    TEST_FN_CLOSE
 }
 
 
@@ -178,7 +176,7 @@ void test_example()
     test_example_malloc(show);
     test_example_revert(show);
 
-    TEST_ASSERT_EMPTY
+    TEST_ASSERT_MEM_EMPTY
 }
 
 
@@ -186,9 +184,7 @@ void test_example()
 int main()
 {
     setbuf(stdout, NULL);
-    TEST_TIMEOUT_OPEN(5)
     test_example();
-    TEST_TIMEOUT_CLOSE
     printf("\n\n\tTest successful\n\n");
     return 0;
 }
