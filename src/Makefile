@@ -31,3 +31,4 @@ $(DGB):
 
 clean:
 	rm -rf *.o
+	$(MAKE) clean --directory=$(dir $(LIB))
